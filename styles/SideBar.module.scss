@@ -1,0 +1,64 @@
+@import "globals.scss";
+
+.sidebar {
+    width: 459px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $background-light;
+}
+
+
+.topbar {
+    margin: 42px 46px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@mixin topbar-mixin {
+    height: 40px;
+    line-height: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: $background-grey;
+    color: $text-light;
+    box-shadow: $box-shadow;
+}
+
+.searchbar {
+    @include topbar-mixin();
+    width: 170px;
+    text-align: center;
+    vertical-align: middle;
+    outline: none; 
+    border: 0;
+}
+.searchbar::placeholder {
+    color: $text-light;
+}
+
+@mixin round-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+.location-button {
+    border: 0;
+    background-image: url("../public/images/location.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    @include topbar-mixin();
+    @include round-button();
+}
+.location-button:active {
+    width: 42px;
+    height: 42px;
+}
+
+.current-weather {
+    background-image: url("../public/images/location.svg");
+}
