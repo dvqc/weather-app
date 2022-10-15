@@ -32,9 +32,10 @@
     width: 170px;
     text-align: center;
     vertical-align: middle;
-    outline: none; 
+    outline: none;
     border: 0;
 }
+
 .searchbar::placeholder {
     color: $text-light;
 }
@@ -44,21 +45,83 @@
     height: 40px;
     border-radius: 100%;
 }
+
 .location-button {
     border: 0;
     background-image: url("../public/images/location.svg");
-    background-size: contain;
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
     @include topbar-mixin();
     @include round-button();
 }
+
 .location-button:active {
-    width: 42px;
-    height: 42px;
+    border: 2px solid $background-light;
 }
 
-.current-weather {
-    background-image: url("../public/images/location.svg");
+.current-weather-img {
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.current-weather-img::before {
+    background-image: url("../public/images/Cloud-background.png");
+    background-size: 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    z-index: -1;
+}
+
+.current-weather-temp {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: $text-light;
+    font-weight: 500;
+    font-size: 100px;
+}
+
+.current-weather-temp span {
+    color: $text-grey;
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.current-weather-type {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    color: $text-grey;
+    margin: 50px 0;
+}
+
+.current-date {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: $text-grey;
+}
+
+.current-date span{
+    margin: 0 10px;
+}
+
+.current-location {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    color: $text-grey;
 }
