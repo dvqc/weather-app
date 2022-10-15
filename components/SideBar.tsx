@@ -64,43 +64,65 @@ const CurrentDate = () => {
         </div>
     )
 }
-
+// 1- render default city 
+// 2- get location
+// 3- fetch data 
+// 4- render new data
+// 
 const CurrentLocation = () => {
-    const coordRef = useRef<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
+    const [coord, setCoord] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
+    const [location, setLocation] = useState('');
+
     useEffect(() => {
-        getLocation().then(() => fetchData(coordRef.current));;
-    },[]);
+        fetchData(coord);
+        getCoords().then((coords) => {
+            if (coords != undefined && JSON.stringify(coords) != JSON.stringify(coord))
+                setCoord(coords)
+        })
+    }, [coord]);
+
     return (
         <div className={styles["current-location"]}>
+            <span></span>{location}
         </div>
     )
 
-    async function getLocation() {
+    async function getCoords(): Promise<ICoords | undefined> {
         if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
             if (navigator.geolocation != undefined) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    let coord: any = {}
-                    coord['lat'] = pos.coords.latitude;
-                    coord['lon'] = pos.coords.longitude;
-                    coordRef.current = coord;
-                    console.log(coord)
-                })
-            } else {
+                const pos: any = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                });
+                console.log('pos' + pos)
+                return {
+                    lat: pos.coords.latitude,
+                    lon: pos.coords.longitude,
+                };
+            }
+            else {
                 console.log("Geolocation is not supported by this browser.");
             }
         }
-
-    }
+        else {
+            console.log("Could not get browser object");
+        }
+    };
+    
     function fetchData(coord: ICoords | undefined) {
         if (coord != undefined) {
             const key = process.env.NEXT_PUBLIC_API_KEY_WA;
             fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${coord.lat},${coord.lon}&key=${key}`,
                 { method: 'GET' })
                 .then((response) => response.json())
-                .then((data) => console.log(data));
+                .then((data) => {
+                    console.log(data)
+                    setLocation(data.location.region)
+                });
         }
     }
 }
+
+
 
 
 const formatDate = (date: Date) => {

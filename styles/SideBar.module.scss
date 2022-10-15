@@ -48,7 +48,7 @@
 
 .location-button {
     border: 0;
-    background-image: url("../public/images/location.svg");
+    background-image: url("../public/images/gps.svg");
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
@@ -112,7 +112,7 @@
     font-size: 14px;
     line-height: 14px;
     text-align: center;
-    color: $text-grey;
+    color: $text-dark-grey;
 }
 
 .current-date span{
@@ -123,5 +123,18 @@
     font-weight: 600;
     font-size: 14px;
     text-align: center;
-    color: $text-grey;
+    color: $text-dark-grey;
+    margin: 20px 0px;
+    line-height: 20px;
+}
+
+.current-location span {
+    background-image: url("../public/images/location.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
 }
