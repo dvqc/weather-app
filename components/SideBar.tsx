@@ -1,42 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
-interface ICurrentData {
-    region: string,
-    country: string,
-    condition: string,
-    temp_c: number,
-    temp_f: number,
-    wind: number,
-    pressure: number,
-    humidity: number,
-}
 
-interface ICoords {
-    lat: number,
-    lon: number
-}
 
-import { useEffect, useRef, useState } from "react"
+import { useContext } from "react"
 import styles from "styles/SideBar.module.scss"
+import DataContext from "../contexts/DataContext"
 
 const SideBar = () => {
+    const data = useContext(DataContext);
+    console.log(data);
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.topbar}>
                 <input type="text" placeholder="Search for places" className={styles.searchbar}></input>
                 <button className={styles["location-button"]}></button>
             </div>
-            <CurrentWeatherImage />
-            <CurrentWeatherTemp temp={15} unit={"C"}></CurrentWeatherTemp>
-            <CurrentWeatherType type={"Shower"} />
+            <CurrentWeatherImage conditionImg={translateCondition(data.condition)} />
+            <CurrentWeatherTemp temp={data.temp_c} unit={"C"}></CurrentWeatherTemp>
+            <CurrentWeatherType conditionText={data.condition_text} />
             <CurrentDate />
-            <CurrentLocation />
+            <CurrentLocation city={data.city} region={data.region} />
         </div>
     )
 }
-const CurrentWeatherImage = () => {
+const CurrentWeatherImage = ({ conditionImg }: { conditionImg: string }) => {
     return (
         <div className={styles["current-weather-img"]}>
-            <img src="/images/weather_types/Shower.png" alt='current weather image' />
+            <img src={`/images/conditions/${conditionImg}.png`} alt='current weather image' />
         </div>
     )
 }
@@ -49,10 +39,10 @@ const CurrentWeatherTemp = ({ temp, unit }: { temp: number, unit: "C" | "F" }) =
     )
 }
 
-const CurrentWeatherType = ({ type }: { type: string }) => {
+const CurrentWeatherType = ({ conditionText }: { conditionText: string }) => {
     return (
         <div className={styles["current-weather-type"]}>
-            {type}
+            {conditionText}
         </div>
     )
 }
@@ -64,64 +54,34 @@ const CurrentDate = () => {
         </div>
     )
 }
-// 1- render default city 
-// 2- get location
-// 3- fetch data 
-// 4- render new data
-// 
-const CurrentLocation = () => {
-    const [coord, setCoord] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
-    const [location, setLocation] = useState('');
 
-    useEffect(() => {
-        fetchData(coord);
-        getCoords().then((coords) => {
-            if (coords != undefined && JSON.stringify(coords) != JSON.stringify(coord))
-                setCoord(coords)
-        })
-    }, [coord]);
+const CurrentLocation = ({ city, region }: { city: string, region: string }) => {
+
 
     return (
         <div className={styles["current-location"]}>
-            <span></span>{location}
+            <span></span>{city}, {region}
         </div>
     )
 
-    async function getCoords(): Promise<ICoords | undefined> {
-        if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
-            if (navigator.geolocation != undefined) {
-                const pos: any = await new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(resolve, reject);
-                });
-                console.log('pos' + pos)
-                return {
-                    lat: pos.coords.latitude,
-                    lon: pos.coords.longitude,
-                };
-            }
-            else {
-                console.log("Geolocation is not supported by this browser.");
-            }
-        }
-        else {
-            console.log("Could not get browser object");
-        }
-    };
-    
-    function fetchData(coord: ICoords | undefined) {
-        if (coord != undefined) {
-            const key = process.env.NEXT_PUBLIC_API_KEY_WA;
-            fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${coord.lat},${coord.lon}&key=${key}`,
-                { method: 'GET' })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data)
-                    setLocation(data.location.region)
-                });
-        }
-    }
+
 }
 
+const translateCondition = (code: number) => {
+    switch (code) {
+        case 1000:
+            return 'Clear';
+
+        case 1003:
+            return 'LightCloud';
+
+        case 1006:
+            return 'HeavyCloud';
+
+        default:
+            return 'Sleet'
+    }
+}
 
 
 
