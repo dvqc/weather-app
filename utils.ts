@@ -1,6 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
 import { ICoords } from "./interfaces";
 
+const DEFAULTDATA = {
+  city: 'Paris' ,
+  region: 'Ile-de-France',
+  country: 'France',
+  condition: 0,
+  condition_text: 'Unkown',
+  temp_c: 0,
+  temp_f: 0,
+  wind: 0,
+  pressure: 0,
+  humidity: 0,
+  vis_miles: 0,
+}
+
 async function getCoords(): Promise<ICoords | undefined> {
   if (typeof window !== 'undefined' && typeof window.navigator !== 'undefined') {
     if (navigator.geolocation != undefined) {
@@ -62,4 +76,4 @@ const setNewCoords = (setCoords: Dispatch<SetStateAction<ICoords>>, coords: ICoo
   })
 }
 
-export { formatDate, translateCondition, setNewCoords }
+export { formatDate, translateCondition, setNewCoords, DEFAULTDATA }

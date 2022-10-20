@@ -1,21 +1,10 @@
 import { useEffect, useState } from "react";
 import { ICoords, ICurrentData } from "../interfaces";
+import { DEFAULTDATA } from "../utils";
 
-const useFetch = (coord: ICoords | undefined) => {
+const useFetchCoords = (coord: ICoords | undefined) => {
 
-    const [currentData, setData] = useState<ICurrentData>({
-        city: 'Paris' ,
-        region: 'Ile-de-France',
-        country: 'France',
-        condition: 0,
-        condition_text: 'Unkown',
-        temp_c: 0,
-        temp_f: 0,
-        wind: 0,
-        pressure: 0,
-        humidity: 0,
-        vis_miles: 0,
-    });
+    const [currentData, setData] = useState<ICurrentData>(DEFAULTDATA);
     console.log(currentData)
     useEffect(() => {
 
@@ -42,10 +31,11 @@ const useFetch = (coord: ICoords | undefined) => {
                         })
                     }
                 })
+                .catch(err => console.log(err))
         }
     }, [coord]);
     return currentData;
 }
 
 
-export default useFetch;
+export default useFetchCoords;

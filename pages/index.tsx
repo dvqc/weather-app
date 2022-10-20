@@ -8,7 +8,7 @@ import { setNewCoords } from '../utils';
 
 const Home: NextPage = () => {
   const [coords, setCoords] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
-  const currentData: ICurrentData = useFetchCoords(coords)
+  const currentData: ICurrentData  = useFetchCoords(coords)
 
   useEffect(() => {
     setNewCoords(setCoords, coords);
