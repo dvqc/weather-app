@@ -1,99 +1,100 @@
 /* eslint-disable @next/next/no-img-element */
-
-
-import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react"
+import { Dispatch, SetStateAction, useContext, useState } from "react"
 import styles from "styles/SideBar.module.scss"
-import DataContext from "../contexts/DataContext"
+import DataContext from "../contexts/DataContext";
+import useFetchByCity from "../hooks/useFetchByCity";
 import useFetchCities from "../hooks/useFetchCities";
 import { ICoords } from "../interfaces";
 import { formatDate, setNewCoords, translateCondition } from "../utils";
 
 const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICoords>>, coords: ICoords }) => {
-    const data = useContext(DataContext);
-    const [searchCity,setSearchCity] = useState('');
-    console.log(data);
+    const { data, setData } = useContext(DataContext);
+    const [searchCity, setSearchCity] = useState('');
+    const [searching, setSearching] = useState(false);
 
     const handleLocationClicked = () => {
         setNewCoords(setCoords, coords)
     }
-    const handleSearchChange = (e : React.FormEvent<HTMLInputElement>) => {
+
+    const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
         setSearchCity(e.currentTarget.value)
     }
+
+    const handleSearchFocus = () => {
+        setSearching(true);
+    }
+
+    const handleSearchUnfocus = () => {
+        setSearching(false);
+    }
     
-    useEffect(() => {
-        const key = process.env.NEXT_PUBLIC_API_KEY_WA;
-        fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${searchCity}&key=${key}`,
-            { method: 'GET' }).
-            then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-                if (data != undefined) {
-                    // console.log({ ...data.map((entry: any) => entry.location.city) })
-                }
-            })
-            .catch(err => console.log(err))
-    }, [searchCity]);
+    useFetchByCity(searchCity, setData)
+
+    let searchButton;
+    searching ? searchButton = <button className={styles["search-button"]}>Search</button> : searchButton = <></>
 
     return (
-        <div className={styles.sidebar}>
-            <div className={styles.topbar}>
-                <input value={searchCity} onChange={handleSearchChange} type="text" placeholder="Search for places" className={styles.searchbar}></input>
-                <button onClick={handleLocationClicked} className={styles["location-button"]}></button>
+        <div className={styles['sidebar']}>
+            <div className={`${styles["cancel-search"]} ${!searching ? styles["hide"] : ""}`}>
+                <button onClick={handleSearchUnfocus}></button>
             </div>
-            <CurrentWeatherImage conditionImg={translateCondition(data.condition)} />
-            <CurrentWeatherTemp temp={data.temp_c} unit={"C"}></CurrentWeatherTemp>
-            <CurrentWeatherType conditionText={data.condition_text} />
-            <CurrentDate />
-            <CurrentLocation city={data.city} region={data.region} />
+            <div className={styles['topbar']}>
+                <input value={searchCity} onChange={handleSearchChange} onFocus={handleSearchFocus} type="text"
+                    placeholder="Search for places" className={`${styles["searchbar"]} ${searching ? styles["focused"] : ''}`}>
+                </input>
+                <button onClick={handleLocationClicked} className={`${styles["location-button"]} ${searching ? styles["hide"] : ""}`}></button>
+                {searchButton}
+            </div>
+            <CurrentWeatherImage searching={searching} conditionImg={translateCondition(data.condition)} />
+            <CurrentWeatherTemp searching={searching} temp={data.temp_c} unit={"C"}></CurrentWeatherTemp>
+            <CurrentWeatherType searching={searching} conditionText={data.condition_text} />
+            <CurrentDate searching={searching} />
+            <CurrentLocation searching={searching} city={data.city} region={data.region} />
         </div>
     )
 
 }
-const CurrentWeatherImage = ({ conditionImg }: { conditionImg: string }) => {
+
+const CurrentWeatherImage = ({ conditionImg, searching }: { conditionImg: string, searching: boolean }) => {
     return (
-        <div className={styles["current-weather-img"]}>
+        <div className={`${styles["current-weather-img"]} ${searching ? styles["hide"] : ""}`}>
             <img src={`/images/conditions/${conditionImg}.png`} alt='current weather image' />
         </div>
     )
 }
 
-const CurrentWeatherTemp = ({ temp, unit }: { temp: number, unit: "C" | "F" }) => {
+const CurrentWeatherTemp = ({ temp, unit, searching }: { temp: number, unit: "C" | "F", searching: boolean }) => {
     return (
-        <div className={styles["current-weather-temp"]}>
+        <div className={`${styles["current-weather-temp"]} ${searching ? styles["hide"] : ""}`}>
             {temp}<span>°{unit}</span>
         </div>
     )
 }
 
-const CurrentWeatherType = ({ conditionText }: { conditionText: string }) => {
+const CurrentWeatherType = ({ conditionText, searching }: { conditionText: string, searching: boolean }) => {
     return (
-        <div className={styles["current-weather-type"]}>
+        <div className={`${styles["current-weather-type"]} ${searching ? styles["hide"] : ""}`}>
             {conditionText}
         </div>
     )
 }
 
-const CurrentDate = () => {
+const CurrentDate = ({ searching }: { searching: boolean }) => {
     return (
-        <div className={styles["current-date"]}>
+        <div className={`${styles["current-date"]} ${searching ? styles["hide"] : ""}`}>
             Today<span>·</span>{formatDate(new Date())}
         </div>
     )
 }
 
-const CurrentLocation = ({ city, region }: { city: string, region: string }) => {
+const CurrentLocation = ({ city, region, searching }: { city: string, region: string, searching: boolean }) => {
 
 
     return (
-        <div className={styles["current-location"]}>
+        <div className={`${styles["current-location"]} ${searching ? styles["hide"] : ""}`}>
             <span></span>{city}, {region}
         </div>
     )
-
-
 }
-
-
-
 
 export default SideBar

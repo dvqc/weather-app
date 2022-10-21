@@ -1,7 +1,7 @@
 @import "globals.scss";
 
 .sidebar {
-    width: 459px;
+    width: 30.6rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,18 +10,19 @@
 
 
 .topbar {
-    margin: 42px 46px;
+    margin: 2.8rem 3rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
+
 @mixin topbar-mixin {
-    height: 40px;
-    line-height: 40px;
+    height: 2.65rem;
+    line-height: 2.65rem;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: $background-grey;
     color: $text-light;
     box-shadow: $box-shadow;
@@ -29,20 +30,50 @@
 
 .searchbar {
     @include topbar-mixin();
-    width: 170px;
-    text-align: center;
+    width: 11.3rem;
     vertical-align: middle;
     outline: none;
     border: 0;
+    padding-left: 1.5rem;
+}
+
+.searchbar.focused {
+    width: 17.85rem;
+    padding: 0 0 0 3rem;
+    background-color: $background-light;
+    background: url("../public/images/search.svg") left no-repeat scroll;
+    background-position: 1rem;
+    background-size: 1.5rem;
+    border: 1px solid $text-light;
+    box-shadow: none;
+}
+.searchbar.focused::placeholder {
+    color: $text-grey-search;
+}
+
+.search-button {
+    @include topbar-mixin();
+    background-color: #3C47E9;
+    color: $text-light;
+    box-shadow: none;
+    padding: 0 1.2rem;
+    border: 0;
+    cursor: pointer;
+}
+
+.search-button:active {
+    background-color: #3C67E9;
 }
 
 .searchbar::placeholder {
     color: $text-light;
 }
 
+
+
 @mixin round-button {
-    width: 40px;
-    height: 40px;
+    width: 2.65rem;
+    height: 2.65rem;
     border-radius: 100%;
 }
 
@@ -52,6 +83,7 @@
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
+    cursor: pointer;
     @include topbar-mixin();
     @include round-button();
 }
@@ -90,27 +122,27 @@
     align-items: baseline;
     color: $text-light;
     font-weight: 500;
-    font-size: 100px;
+    font-size: 6.65rem;
 }
 
 .current-weather-temp span {
     color: $text-grey;
     font-weight: 500;
-    font-size: 50px;
+    font-size: 3.3rem;
 }
 
 .current-weather-type {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 1.6rem;
     text-align: center;
     color: $text-grey;
-    margin: 50px 0;
+    margin: 3.3rem 0;
 }
 
 .current-date {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 1rem;
+    line-height: 1rem;
     text-align: center;
     color: $text-dark-grey;
 }
@@ -121,11 +153,11 @@
 
 .current-location {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 1rem;
     text-align: center;
     color: $text-dark-grey;
-    margin: 20px 0px;
-    line-height: 20px;
+    margin: 1.3rem 0;
+    line-height: 1.3rem;
 }
 
 .current-location span {
@@ -134,7 +166,28 @@
     background-position: center;
     background-size: contain;
     vertical-align: middle;
-    width: 18px;
-    height: 18px;
+    width: 1.2rem;
+    height: 1.2rem;
     display: inline-block;
+}
+
+.hide{
+  display: none;
+}
+
+.cancel-search {
+    align-self: flex-end;
+    padding: .5rem;
+}
+
+.cancel-search button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    background-image: url("../public/images/close.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 1.5rem;
+    height: 1.5rem;
 }

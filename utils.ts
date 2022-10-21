@@ -21,7 +21,6 @@ async function getCoords(): Promise<ICoords | undefined> {
       const pos: any = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
       });
-      console.log(pos)
       return {
         lat: pos.coords.latitude,
         lon: pos.coords.longitude,
@@ -72,7 +71,6 @@ const setNewCoords = (setCoords: Dispatch<SetStateAction<ICoords>>, coords: ICoo
       if (newCoords != undefined && JSON.stringify(newCoords) != JSON.stringify(coords)) {
           setCoords(newCoords)
       }
-      console.log(newCoords)
   })
 }
 

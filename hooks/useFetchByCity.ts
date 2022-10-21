@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction, useEffect} from "react";
-import { ICoords, ICurrentData } from "../interfaces";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { ICurrentData } from "../interfaces";
 
-const useFetchCoords = (coord: ICoords | undefined, setData: Dispatch<SetStateAction<ICurrentData>>) => {
-    useEffect(()=> {   
-    if (coord != undefined) {
+const useFetchByCity= (city: string, setData: Dispatch<SetStateAction<ICurrentData>> | undefined) => {
+    useEffect(() => {
+        if(setData){
             const key = process.env.NEXT_PUBLIC_API_KEY_WA;
-            fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${coord.lat},${coord.lon}&key=${key}`,
+            fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${city}&key=${key}`,
                 { method: 'GET' }).
                 then((response) => response.json())
                 .then((data) => {
@@ -27,8 +27,9 @@ const useFetchCoords = (coord: ICoords | undefined, setData: Dispatch<SetStateAc
                     }
                 })
                 .catch(err => console.log(err))
-        }},[coord,setData])
+            }
+    }, [city, setData]);
 }
 
 
-export default useFetchCoords;
+export default useFetchByCity;

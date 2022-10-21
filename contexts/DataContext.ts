@@ -1,7 +1,10 @@
 import { createContext } from "react";
-import { ICurrentData } from "../interfaces";
+import {  IDataContext } from "../interfaces";
 import { DEFAULTDATA } from "../utils";
 
-const DataContext = createContext<ICurrentData>(DEFAULTDATA);
+const DataContext = createContext<IDataContext>({
+    data: { ...DEFAULTDATA },
+    setData: undefined
+});
 
 export default DataContext;
