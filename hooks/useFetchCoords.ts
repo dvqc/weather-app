@@ -9,7 +9,6 @@ const useFetchCoords = (coord: ICoords | undefined, setData: Dispatch<SetStateAc
                 { method: 'GET' }).
                 then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
                     if (data != undefined) {
                         setData({
                             city: data.location.name,

@@ -3,13 +3,16 @@ import { ICurrentData } from "../interfaces";
 
 const useFetchByCity= (city: string, setData: Dispatch<SetStateAction<ICurrentData>> | undefined) => {
     useEffect(() => {
-        if(setData){
+        if(setData && city && city.length > 2){
             const key = process.env.NEXT_PUBLIC_API_KEY_WA;
             fetch(`https://api.weatherapi.com/v1/current.json?origin=*&q=${city}&key=${key}`,
                 { method: 'GET' }).
                 then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
+                    if ('error' in data){
+                        console.log(data.error)
+                        return
+                    }
                     if (data != undefined) {
                         setData({
                             city: data.location.name,

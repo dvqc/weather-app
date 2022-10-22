@@ -47,6 +47,7 @@
     border: 1px solid $text-light;
     box-shadow: none;
 }
+
 .searchbar.focused::placeholder {
     color: $text-grey-search;
 }
@@ -147,7 +148,7 @@
     color: $text-dark-grey;
 }
 
-.current-date span{
+.current-date span {
     margin: 0 10px;
 }
 
@@ -171,8 +172,8 @@
     display: inline-block;
 }
 
-.hide{
-  display: none;
+.hide {
+    display: none;
 }
 
 .cancel-search {
@@ -180,7 +181,7 @@
     padding: .5rem;
 }
 
-.cancel-search button{
+.cancel-search button {
     border: none;
     background: none;
     cursor: pointer;
@@ -190,4 +191,32 @@
     background-position: center;
     width: 1.5rem;
     height: 1.5rem;
+}
+
+.cities-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 3rem;
+}
+
+.city-item {
+    color: $text-light;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.city-item:hover {
+    border: 1px solid $text-grey-search;
+    background: none;
+    cursor: pointer;
+    background-image: url("../public/images/next.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position: right;
 }
