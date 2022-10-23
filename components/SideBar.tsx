@@ -4,7 +4,7 @@ import styles from "styles/SideBar.module.scss"
 import DataContext from "../contexts/DataContext";
 import useFetchByCity from "../hooks/useFetchByCity";
 import useFetchCities from "../hooks/useFetchCities";
-import { ICoords } from "../interfaces";
+import { ICoords, TempUnit } from "../interfaces";
 import { formatDate, setNewCoords, translateCondition } from "../utils";
 import CitiesList from "./CitiesList";
 
@@ -27,14 +27,7 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
         setSearching(true);
     }
     
-    useEffect(() => {
-        if (!searching) {
-            setSearchInput('');
-            setSearchCity('');
-            setSearchedCitites(['']);
-        }
-    }, [searching, setSearchedCitites, setSearchInput, setSearchCity])
-    
+   
     const handleSearchUnfocus = () => {
         setSearching(false)
     }
@@ -43,13 +36,21 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
         setSearchCity(searchInput);
     }
 
+    useEffect(() => {
+        if (!searching) {
+            setSearchInput('');
+            setSearchCity('');
+            setSearchedCitites(['']);
+        }
+    }, [searching, setSearchedCitites, setSearchInput, setSearchCity])
+    
     let citiesList;
     searchedCities[0] != '' ? citiesList = <CitiesList cities={searchedCities} onSelect={setSearching} /> : citiesList = <></>
     let searchButton;
     searching ? searchButton = <button className={styles["search-button"]} onClick={handleSearch}>Search</button> : searchButton = <></>
 
     return (
-        <div className={styles['sidebar']}>
+        <div className={`${styles["sidebar"]} ${searching ? styles["focused"] : ''}`}>
             <div className={`${styles["cancel-search"]} ${!searching ? styles["hide"] : ""}`}>
                 <button onClick={handleSearchUnfocus}></button>
             </div>
@@ -63,10 +64,14 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
             {citiesList}
 
             <CurrentWeatherImage searching={searching} conditionImg={translateCondition(data.condition)} />
+            <div>
             <CurrentWeatherTemp searching={searching} temp={data.temp_c} unit={"C"}></CurrentWeatherTemp>
             <CurrentWeatherType searching={searching} conditionText={data.condition_text} />
+            </div>
+            <div>
             <CurrentDate searching={searching} />
             <CurrentLocation searching={searching} city={data.city} region={data.region} />
+            </div>
         </div>
     )
 
@@ -80,7 +85,7 @@ const CurrentWeatherImage = ({ conditionImg, searching }: { conditionImg: string
     )
 }
 
-const CurrentWeatherTemp = ({ temp, unit, searching }: { temp: number, unit: "C" | "F", searching: boolean }) => {
+const CurrentWeatherTemp = ({ temp, unit, searching }: { temp: number, unit: TempUnit, searching: boolean }) => {
     return (
         <div className={`${styles["current-weather-temp"]} ${searching ? styles["hide"] : ""}`}>
             {temp}<span>°{unit}</span>

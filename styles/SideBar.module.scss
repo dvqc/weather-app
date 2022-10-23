@@ -2,12 +2,16 @@
 
 .sidebar {
     width: 30.6rem;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: $background-light;
+    justify-content: space-between;
 }
 
+.sidebar.focused{
+    justify-content: flex-start;
+}
 
 .topbar {
     margin: 2.8rem 3rem;
@@ -15,6 +19,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
 
 
 @mixin topbar-mixin {
@@ -94,12 +99,12 @@
 }
 
 .current-weather-img {
-    min-height: 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
+    flex-grow: 1;
 }
 
 .current-weather-img::before {

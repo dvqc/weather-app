@@ -1,0 +1,53 @@
+@import './globals.scss';
+
+.highlights-container {
+    margin: 2rem;
+    padding: 0;
+}
+
+.highlights-title{
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.9rem;   
+    color: $text-light;     
+}
+
+.highlights-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.2rem;
+    justify-content: center;
+    background-color: $background-dark;
+}
+
+.highlights-card {
+    min-height: 10rem;
+    min-width: 22rem;
+    background-color: $background-light;
+    color: $text-light;
+    padding: 1.5rem;
+}
+
+.highlights-card h2 {
+    margin: .3rem;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-align: center;
+}
+
+.highlights-card p {
+    margin: 0;
+    padding: 0;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5rem;
+    text-align: center;
+}
+
+.highlights-unit{
+    font-size: 2.3rem;
+    font-weight: 500;
+    line-height: 3rem;
+}

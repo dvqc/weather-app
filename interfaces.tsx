@@ -25,7 +25,6 @@ interface ICoords {
     lat: number,
     lon: number
 }
-// define function interface ?
+type TempUnit = "C" | "F"
 
-
-export type { ICurrentData, ICoords, IDataContext, ISetData }
+export type { ICurrentData, ICoords, IDataContext, ISetData, TempUnit }

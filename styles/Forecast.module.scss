@@ -1,0 +1,48 @@
+@import './globals.scss';
+.forecast-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.65rem;
+    justify-content: center;
+    background-color: $background-dark;
+}
+
+.forecast-card {
+    width: 8rem;
+    height: 11.8rem;
+    background-color: $background-light;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.forecast-card img{
+    width: 5rem;
+}
+.forecast-date {
+    line-height: 1.2rem;
+    text-align: center;
+    color: $text-light;
+    margin: 0;
+    padding: 0;
+}
+
+.forecast-temp {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.day-temp {
+    color: $text-light;
+    margin: 0;
+    padding: 0;
+}
+
+.night-temp {
+    color: $text-grey;
+    margin: 0;
+    padding: 0;
+}
