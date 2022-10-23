@@ -1,25 +1,25 @@
 @import './globals.scss';
 
 .highlights-container {
-    margin: 2rem;
     padding: 0;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2rem;
 }
 
+.highlights-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 5rem;
+    background-color: $background-dark;
+}
 .highlights-title{
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.9rem;   
     color: $text-light;     
 }
-
-.highlights-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3.2rem;
-    justify-content: center;
-    background-color: $background-dark;
-}
-
 .highlights-card {
     min-height: 10rem;
     min-width: 22rem;

@@ -9,6 +9,7 @@ const ForecastContainer = () => {
             <ForecastCard conditionImg='Hail'></ForecastCard>
             <ForecastCard conditionImg='Clear'></ForecastCard>
             <ForecastCard conditionImg='Sleet'></ForecastCard>
+            <ForecastCard conditionImg='Sleet'></ForecastCard>
         </div>
     )
 }

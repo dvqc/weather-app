@@ -3,8 +3,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.65rem;
-    justify-content: center;
+    justify-content: space-between;
     background-color: $background-dark;
+    padding: 0;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2rem;
 }
 
 .forecast-card {

@@ -18,10 +18,13 @@ const Home: NextPage = () => {
 
   return (
     <DataContext.Provider value={{ data, setData }}>
-      <div>
+      <main>
         <SideBar coords={coords} setCoords={setCoords}></SideBar>
+        <div>
         <ForecastContainer></ForecastContainer>
-      </div>
+        <HighlightsContainer></HighlightsContainer>
+        </div>
+      </main>
     </DataContext.Provider>
   )
 }

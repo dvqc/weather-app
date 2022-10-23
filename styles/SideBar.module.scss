@@ -1,8 +1,8 @@
 @import "globals.scss";
 
 .sidebar {
-    width: 30.6rem;
-    height: 100vh;
+    min-width: 30.6rem;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: $background-light;
