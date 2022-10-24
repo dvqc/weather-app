@@ -2,6 +2,7 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from "react"
 import styles from "styles/SideBar.module.scss"
 import DataContext from "../contexts/DataContext";
+import TempContext from "../contexts/TempContext";
 import useFetchByCity from "../hooks/useFetchByCity";
 import useFetchCities from "../hooks/useFetchCities";
 import { ICoords, TempUnit } from "../interfaces";
@@ -10,6 +11,8 @@ import CitiesList from "./CitiesList";
 
 const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICoords>>, coords: ICoords }) => {
     const { data, setData } = useContext(DataContext);
+    const tempUnit = useContext(TempContext);
+
     const [searchInput, setSearchInput] = useState('');
     const [searchCity, setSearchCity] = useState('');
     const [searching, setSearching] = useState(false);
@@ -26,8 +29,8 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
     const handleSearchFocus = () => {
         setSearching(true);
     }
-    
-   
+
+
     const handleSearchUnfocus = () => {
         setSearching(false)
     }
@@ -43,7 +46,7 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
             setSearchedCitites(['']);
         }
     }, [searching, setSearchedCitites, setSearchInput, setSearchCity])
-    
+
     let citiesList;
     searchedCities[0] != '' ? citiesList = <CitiesList cities={searchedCities} onSelect={setSearching} /> : citiesList = <></>
     let searchButton;
@@ -65,12 +68,13 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
 
             <CurrentWeatherImage searching={searching} conditionImg={translateCondition(data.condition)} />
             <div>
-            <CurrentWeatherTemp searching={searching} temp={data.temp_c} unit={"C"}></CurrentWeatherTemp>
-            <CurrentWeatherType searching={searching} conditionText={data.condition_text} />
+                <CurrentWeatherTemp searching={searching} temp={tempUnit == 'C' ? data.temp_c : data.temp_f} 
+                unit={tempUnit}></CurrentWeatherTemp>
+                <CurrentWeatherType searching={searching} conditionText={data.condition_text} />
             </div>
             <div>
-            <CurrentDate searching={searching} />
-            <CurrentLocation searching={searching} city={data.city} region={data.region} />
+                <CurrentDate searching={searching} />
+                <CurrentLocation searching={searching} city={data.city} region={data.region} />
             </div>
         </div>
     )

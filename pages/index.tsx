@@ -8,32 +8,41 @@ import MainContainer from '../components/MainContainer';
 import SideBar from '../components/SideBar'
 import TempSwitch from '../components/TempSwitch';
 import DataContext from '../contexts/DataContext'
+import TempContext from '../contexts/TempContext';
 import useFetchCoords from '../hooks/useFetchCoords';
-import { ICurrentData, ICoords } from '../interfaces';
+import { ICurrentData, ICoords, TempUnit } from '../interfaces';
 import { DEFAULTDATA, setNewCoords } from '../utils';
 
 const Home: NextPage = () => {
   const [coords, setCoords] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
-  const [data, setData] = useState<ICurrentData>(DEFAULTDATA)
-  useFetchCoords(coords, setData)
-  setNewCoords(setCoords, coords)
+  const [data, setData] = useState<ICurrentData>(DEFAULTDATA);
+  const [tempUnit, setTempUnit] = useState<TempUnit>('C');
+  useFetchCoords(coords, setData);
+  setNewCoords(setCoords, coords);
 
   return (
     <DataContext.Provider value={{ data, setData }}>
-      <main>
-        <SideBar coords={coords} setCoords={setCoords}></SideBar>
-        <MainContainer>
-          <TempSwitch units={['C','F']}></TempSwitch>
-          <ForecastContainer>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
-            <ForecastCard conditionImg='Hail'></ForecastCard>
-            <ForecastCard conditionImg='Clear'></ForecastCard>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
-          </ForecastContainer>
-          <HighlightsContainer></HighlightsContainer>
-        </MainContainer>
-      </main>
+      <TempContext.Provider value={tempUnit}>
+        <main>
+          <SideBar coords={coords} setCoords={setCoords}></SideBar>
+          <MainContainer>
+            <TempSwitch units={['C', 'F']} selectUnit={setTempUnit} ></TempSwitch>
+            <ForecastContainer>
+              <ForecastCard conditionImg='Sleet'></ForecastCard>
+              <ForecastCard conditionImg='Hail'></ForecastCard>
+              <ForecastCard conditionImg='Clear'></ForecastCard>
+              <ForecastCard conditionImg='Sleet'></ForecastCard>
+              <ForecastCard conditionImg='Sleet'></ForecastCard>
+            </ForecastContainer>
+            <HighlightsContainer>
+              <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}></HighlightsCard>
+              <HighlightsCard title={'Humidity'} measurement={data.humidity} unit={'%'}></HighlightsCard>
+              <HighlightsCard title={'Visibility'} measurement={data.vis_miles} unit={'miles'}></HighlightsCard>
+              <HighlightsCard title={'Air Pressure'} measurement={data.pressure} unit={'mb'}></HighlightsCard>
+            </HighlightsContainer>
+          </MainContainer>
+        </main>
+      </TempContext.Provider>
     </DataContext.Provider>
   )
 }
