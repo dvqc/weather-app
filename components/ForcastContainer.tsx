@@ -1,15 +1,11 @@
 import styles from 'styles/Forecast.module.scss'
 import ForecastCard from './ForecastCard';
 
-const ForecastContainer = () => {
+const ForecastContainer = ({children}: {  children?: React.ReactNode;}) => {
 
     return (
         <div className={styles["forecast-container"]}>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
-            <ForecastCard conditionImg='Hail'></ForecastCard>
-            <ForecastCard conditionImg='Clear'></ForecastCard>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
-            <ForecastCard conditionImg='Sleet'></ForecastCard>
+            {children}
         </div>
     )
 }

@@ -13,18 +13,19 @@ const CitiesList = ({ cities, onSelect }: { cities: [string], onSelect: React.Di
         setSelectedCity(key)
         onSelect(false);
     }
+
     return (
         <div className={styles["cities-list"]}>
             {cities.slice(0, 5).map((city, i) => <CityItem key={i} cityName={city}
-                onClick={((e: React.MouseEvent<HTMLDivElement>) => handleSelectCity(e, i))} />)}
+                selectCity={((e: React.MouseEvent<HTMLDivElement>) => handleSelectCity(e, i))} />)}
         </div>
     )
 }
 
-const CityItem = ({ cityName, onClick }: { cityName: string, onClick: React.MouseEventHandler<HTMLDivElement> }) => {
+const CityItem = ({ cityName, selectCity }: { cityName: string, selectCity: React.MouseEventHandler<HTMLDivElement> }) => {
 
     return (
-        <div className={styles["city-item"]} onClick={onClick} >
+        <div className={styles["city-item"]} onClick={selectCity} >
             {cityName}
         </div>
     )

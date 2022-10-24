@@ -81,15 +81,15 @@
     width: 2.65rem;
     height: 2.65rem;
     border-radius: 100%;
+    border: 0;
+    cursor: pointer;
 }
 
 .location-button {
-    border: 0;
     background-image: url("../public/images/gps.svg");
     background-repeat: no-repeat;
     background-size: 70%;
     background-position: center;
-    cursor: pointer;
     @include topbar-mixin();
     @include round-button();
 }
@@ -97,6 +97,7 @@
 .location-button:active {
     border: 2px solid $background-light;
 }
+
 
 .current-weather-img {
     display: flex;

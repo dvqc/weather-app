@@ -1,5 +1,7 @@
 @import './globals.scss';
-.forecast-container{
+@import './SideBar.module.scss';
+
+.forecast-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.65rem;
@@ -22,9 +24,11 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.forecast-card img{
+
+.forecast-card img {
     width: 5rem;
 }
+
 .forecast-date {
     line-height: 1.2rem;
     text-align: center;
@@ -49,4 +53,34 @@
     color: $text-grey;
     margin: 0;
     padding: 0;
+}
+
+
+.temp-switch {
+    margin-top: 2.65rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.35rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.temp-unit {
+    @include round-button();
+    background-color: #585676;
+    color: $text-light;
+    margin: 0 .5rem;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: block;
+}
+
+.temp-unit-select {
+    @include round-button();
+    background-color: $text-light;
+    color: #110E3C;
+    margin: 0 .5rem;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: block;
 }
