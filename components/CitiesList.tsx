@@ -4,14 +4,14 @@ import DataContext from "../contexts/DataContext"
 import useFetchByCity from "../hooks/useFetchByCity"
 
 
-const CitiesList = ({ cities, onSelect }: { cities: [string], onSelect: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const CitiesList = ({ cities, setIsSearching }: { cities: [string], setIsSearching: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const [selectedCity, setSelectedCity] = useState(-1);
     const { setData } = useContext(DataContext);
     useFetchByCity(cities[selectedCity], setData)
 
     const handleSelectCity = (e: React.MouseEvent<HTMLDivElement>, key: number) => {
         setSelectedCity(key)
-        onSelect(false);
+        setIsSearching(false);
     }
 
     return (

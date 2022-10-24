@@ -15,7 +15,7 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
 
     const [searchInput, setSearchInput] = useState('');
     const [searchCity, setSearchCity] = useState('');
-    const [searching, setSearching] = useState(false);
+    const [searching, setIsSearching] = useState(false);
     const [searchedCities, setSearchedCitites] = useFetchCities(searchCity)
 
     const handleLocationClicked = () => {
@@ -27,12 +27,12 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
     }
 
     const handleSearchFocus = () => {
-        setSearching(true);
+        setIsSearching(true);
     }
 
 
     const handleSearchUnfocus = () => {
-        setSearching(false)
+        setIsSearching(false)
     }
 
     const handleSearch = () => {
@@ -48,7 +48,7 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
     }, [searching, setSearchedCitites, setSearchInput, setSearchCity])
 
     let citiesList;
-    searchedCities[0] != '' ? citiesList = <CitiesList cities={searchedCities} onSelect={setSearching} /> : citiesList = <></>
+    searchedCities[0] != '' ? citiesList = <CitiesList cities={searchedCities} setIsSearching={setIsSearching} /> : citiesList = <></>
     let searchButton;
     searching ? searchButton = <button className={styles["search-button"]} onClick={handleSearch}>Search</button> : searchButton = <></>
 
@@ -68,8 +68,8 @@ const SideBar = ({ setCoords, coords }: { setCoords: Dispatch<SetStateAction<ICo
 
             <CurrentWeatherImage searching={searching} conditionImg={translateCondition(data.condition)} />
             <div>
-                <CurrentWeatherTemp searching={searching} temp={tempUnit == 'C' ? data.temp_c : data.temp_f} 
-                unit={tempUnit}></CurrentWeatherTemp>
+                <CurrentWeatherTemp searching={searching} temp={tempUnit == 'C' ? data.temp_c : data.temp_f}
+                    unit={tempUnit}></CurrentWeatherTemp>
                 <CurrentWeatherType searching={searching} conditionText={data.condition_text} />
             </div>
             <div>

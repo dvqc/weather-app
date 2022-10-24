@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { ICoords } from "./interfaces";
 
 const DEFAULTDATA = {
-  city: 'Paris' ,
+  city: 'Paris',
   region: 'Ile-de-France',
   country: 'France',
   condition: 0,
@@ -42,6 +42,24 @@ const formatDate = (date: Date) => {
   return `${weekDays[date.getDay()]}, ${date.getDate()} ${Months[date.getMonth()]}`
 }
 
+const checkIfTomorrow = (date: Date) => {
+  const oneDay = 1000 * 60 * 60 * 24;
+
+  function getMidnight(day: Date) {
+    const date = new Date(day);
+    date.setMilliseconds(999);
+    date.setSeconds(59);
+    date.setMinutes(59);
+    date.setHours(23);
+    return date;
+  }
+
+  const midnightTonight = getMidnight(new Date());
+  const midnightTomorrow = new Date(midnightTonight.getTime() + oneDay);
+  
+  return date > midnightTonight && date < midnightTomorrow;
+}
+
 const translateCondition = (code: number) => {
   if (code == 1000)
     return 'Clear';
@@ -69,10 +87,10 @@ const translateCondition = (code: number) => {
 
 const setNewCoords = (setCoords: Dispatch<SetStateAction<ICoords>>, coords: ICoords) => {
   getCoords().then((newCoords) => {
-      if (newCoords != undefined && JSON.stringify(newCoords) != JSON.stringify(coords)) {
-          setCoords(newCoords)
-      }
+    if (newCoords != undefined && JSON.stringify(newCoords) != JSON.stringify(coords)) {
+      setCoords(newCoords)
+    }
   })
 }
 
-export { formatDate, translateCondition, setNewCoords, DEFAULTDATA }
+export { formatDate, translateCondition, setNewCoords, checkIfTomorrow, DEFAULTDATA }

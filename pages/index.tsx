@@ -10,15 +10,18 @@ import TempSwitch from '../components/TempSwitch';
 import DataContext from '../contexts/DataContext'
 import TempContext from '../contexts/TempContext';
 import useFetchCoords from '../hooks/useFetchCoords';
-import { ICurrentData, ICoords, TempUnit } from '../interfaces';
+import useFetchForecast from '../hooks/useFetchForecast';
+import { ICurrentData, ICoords, TempUnit, IForecastData } from '../interfaces';
 import { DEFAULTDATA, setNewCoords } from '../utils';
 
 const Home: NextPage = () => {
   const [coords, setCoords] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
   const [data, setData] = useState<ICurrentData>(DEFAULTDATA);
   const [tempUnit, setTempUnit] = useState<TempUnit>('C');
+  const [forecastData, setForecastData] = useState<[IForecastData]>()
   useFetchCoords(coords, setData);
   setNewCoords(setCoords, coords);
+  useFetchForecast(data.city, setForecastData)
 
   return (
     <DataContext.Provider value={{ data, setData }}>
@@ -28,11 +31,8 @@ const Home: NextPage = () => {
           <MainContainer>
             <TempSwitch units={['C', 'F']} selectUnit={setTempUnit} ></TempSwitch>
             <ForecastContainer>
-              <ForecastCard conditionImg='Sleet'></ForecastCard>
-              <ForecastCard conditionImg='Hail'></ForecastCard>
-              <ForecastCard conditionImg='Clear'></ForecastCard>
-              <ForecastCard conditionImg='Sleet'></ForecastCard>
-              <ForecastCard conditionImg='Sleet'></ForecastCard>
+              {forecastData ? forecastData.map((entry, key) => <ForecastCard key={key}
+                forecastDay={{ ...entry }}></ForecastCard>) : <></>}
             </ForecastContainer>
             <HighlightsContainer>
               <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}></HighlightsCard>
