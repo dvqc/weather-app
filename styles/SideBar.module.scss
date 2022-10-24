@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 
-.sidebar.focused{
+.sidebar.focused {
     justify-content: flex-start;
 }
 
@@ -19,8 +19,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
-
 
 @mixin topbar-mixin {
     height: 2.65rem;
@@ -73,16 +71,6 @@
 
 .searchbar::placeholder {
     color: $text-light;
-}
-
-
-
-@mixin round-button {
-    width: 2.65rem;
-    height: 2.65rem;
-    border-radius: 100%;
-    border: 0;
-    cursor: pointer;
 }
 
 .location-button {

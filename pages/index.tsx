@@ -4,6 +4,7 @@ import ForecastContainer from '../components/ForcastContainer';
 import ForecastCard from '../components/ForecastCard';
 import HighlightsCard from '../components/HighlightsCard';
 import HighlightsContainer from '../components/HighlightsContainer';
+import MainContainer from '../components/MainContainer';
 import SideBar from '../components/SideBar'
 import TempSwitch from '../components/TempSwitch';
 import DataContext from '../contexts/DataContext'
@@ -21,7 +22,7 @@ const Home: NextPage = () => {
     <DataContext.Provider value={{ data, setData }}>
       <main>
         <SideBar coords={coords} setCoords={setCoords}></SideBar>
-        <div>
+        <MainContainer>
           <TempSwitch units={['C','F']}></TempSwitch>
           <ForecastContainer>
             <ForecastCard conditionImg='Sleet'></ForecastCard>
@@ -31,7 +32,7 @@ const Home: NextPage = () => {
             <ForecastCard conditionImg='Sleet'></ForecastCard>
           </ForecastContainer>
           <HighlightsContainer></HighlightsContainer>
-        </div>
+        </MainContainer>
       </main>
     </DataContext.Provider>
   )

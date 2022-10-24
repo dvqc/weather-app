@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TempUnit } from "../interfaces";
-import styles from "styles/Forecast.module.scss";
+import styles from "styles/Main.module.scss"
 
 const TempSwitch = ({ units }: { units: TempUnit[] }) => {
     const [selectedUnit, setSelectedUnit] = useState(0)

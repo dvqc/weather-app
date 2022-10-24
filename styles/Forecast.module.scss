@@ -1,5 +1,4 @@
 @import './globals.scss';
-@import './SideBar.module.scss';
 
 .forecast-container {
     display: flex;
@@ -8,9 +7,6 @@
     justify-content: space-between;
     background-color: $background-dark;
     padding: 0;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 2rem;
 }
 
 .forecast-card {
@@ -53,34 +49,4 @@
     color: $text-grey;
     margin: 0;
     padding: 0;
-}
-
-
-.temp-switch {
-    margin-top: 2.65rem;
-    margin-left: 15%;
-    margin-right: 15%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.35rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.temp-unit {
-    @include round-button();
-    background-color: #585676;
-    color: $text-light;
-    margin: 0 .5rem;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    display: block;
-}
-
-.temp-unit-select {
-    @include round-button();
-    background-color: $text-light;
-    color: #110E3C;
-    margin: 0 .5rem;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    display: block;
 }
