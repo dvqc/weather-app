@@ -4,7 +4,7 @@ import { IForecastData } from "../interfaces";
 
 const useFetchForecast = (city: string, setForecastData: Dispatch<SetStateAction<[IForecastData] | undefined>>) => {
     useEffect(() => {
-        if (setForecastData && city && city.length > 2) {
+        if (city && city.length > 2) {
             const key = process.env.NEXT_PUBLIC_API_KEY_WA;
             fetch(`https://api.weatherapi.com/v1/forecast.json?origin=*&q=${city}&key=${key}&days=6&hour=12`,
                 { method: 'GET' }).

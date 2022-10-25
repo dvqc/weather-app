@@ -14,6 +14,7 @@ const DEFAULTDATA = {
   pressure: 0,
   humidity: 0,
   vis_miles: 0,
+  wind_dir: 'N'
 }
 
 async function getCoords(): Promise<ICoords | undefined> {

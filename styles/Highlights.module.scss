@@ -12,12 +12,14 @@
     row-gap: 5rem;
     background-color: $background-dark;
 }
-.highlights-title{
+
+.highlights-title {
     font-size: 1.6rem;
     font-weight: 700;
-    line-height: 1.9rem;   
-    color: $text-light;     
+    line-height: 1.9rem;
+    color: $text-light;
 }
+
 .highlights-card {
     min-height: 10rem;
     min-width: 22rem;
@@ -44,8 +46,39 @@
     text-align: center;
 }
 
-.highlights-unit{
+.highlights-unit {
     font-size: 2.3rem;
     font-weight: 500;
     line-height: 3rem;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.progress-percentage {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1rem;
+    color: $text-grey;
+}
+
+@mixin progress-bar-mixin {
+    height: .5rem;
+    min-width: 15.3rem;
+    border-radius: 5rem;
+    background-color: $text-light;
+    flex-grow: 1;
+}
+
+.progress-bar-empty {
+    @include progress-bar-mixin();
+}
+
+.progress-bar-empty::before {
+    @include progress-bar-mixin();
+    background-color: #FFEC65;
+    min-width: 10.3rem;
 }

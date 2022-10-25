@@ -21,7 +21,8 @@ const useFetchCoords = (coord: ICoords | undefined, setData: Dispatch<SetStateAc
                             wind: Math.round(data.current.wind_mph),
                             pressure: Math.round(data.current.pressure_mb),
                             humidity: Math.round(data.current.humidity),
-                            vis_miles: data.current.vis_miles
+                            vis_miles: data.current.vis_miles,
+                            wind_dir: data.current.wind_dir,
                         })
                     }
                 })

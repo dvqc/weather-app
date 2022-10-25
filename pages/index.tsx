@@ -5,6 +5,7 @@ import ForecastCard from '../components/ForecastCard';
 import HighlightsCard from '../components/HighlightsCard';
 import HighlightsContainer from '../components/HighlightsContainer';
 import MainContainer from '../components/MainContainer';
+import ProgressBar from '../components/ProgressBar';
 import SideBar from '../components/SideBar'
 import TempSwitch from '../components/TempSwitch';
 import DataContext from '../contexts/DataContext'
@@ -34,6 +35,7 @@ const Home: NextPage = () => {
               {forecastData ? forecastData.map((entry, key) => <ForecastCard key={key}
                 forecastDay={{ ...entry }}></ForecastCard>) : <></>}
             </ForecastContainer>
+            <ProgressBar percentage={80}></ProgressBar>
             <HighlightsContainer>
               <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}></HighlightsCard>
               <HighlightsCard title={'Humidity'} measurement={data.humidity} unit={'%'}></HighlightsCard>
