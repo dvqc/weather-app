@@ -6,15 +6,17 @@ const ProgressBar = ({ percentage }: { percentage: number }) => {
             <div>Invalid percentage</div>
         )
     else {
-
-
         return (
             <div className={styles['progress-container']}>
                 <div className={styles['progress-percentage']}>0</div>
                 <div className={styles['progress-percentage']}>50</div>
                 <div className={styles['progress-percentage']}>100</div>
-                <div className={styles['progress-bar-empty']}></div>
-            </div>
+                <div className={styles['progress-bar-empty']}>
+                    <div className={styles['progress-bar-full']} style={{maxWidth: percentage+'%'}}></div>
+                </div>
+                <div className={`${styles['progress-percentage']} ${styles['align-right']}`}>%</div>
+
+            </div >
         )
     }
 }

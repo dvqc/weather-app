@@ -35,10 +35,11 @@ const Home: NextPage = () => {
               {forecastData ? forecastData.map((entry, key) => <ForecastCard key={key}
                 forecastDay={{ ...entry }}></ForecastCard>) : <></>}
             </ForecastContainer>
-            <ProgressBar percentage={80}></ProgressBar>
             <HighlightsContainer>
               <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}></HighlightsCard>
-              <HighlightsCard title={'Humidity'} measurement={data.humidity} unit={'%'}></HighlightsCard>
+              <HighlightsCard title={'Humidity'} measurement={data.humidity} unit={'%'}>
+                <ProgressBar percentage={data.humidity}></ProgressBar>
+              </HighlightsCard>
               <HighlightsCard title={'Visibility'} measurement={data.vis_miles} unit={'miles'}></HighlightsCard>
               <HighlightsCard title={'Air Pressure'} measurement={data.pressure} unit={'mb'}></HighlightsCard>
             </HighlightsContainer>
