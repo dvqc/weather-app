@@ -42,27 +42,28 @@ interface ICoords {
 type TempUnit = "C" | "F";
 
 const WindDirObj = {
-    N: { dir: 'N', angle: 90 },
-    NEN: { dir: 'NEN', angle: 67.5 },
-    NE: { dir: 'NE', angle: 45 },
-    NEE: { dir: 'NEE', angle: 22.5 },
-    E: { dir: 'E', angle: 0 },
-    SEE: { dir: 'SEE', angle: 337.5 },
-    SE: { dir: 'SE', angle: 315 },
-    SES: { dir: 'SES', angle: 292.5 },
-    S: { dir: 'S', angle: 270 },
-    SWS: { dir: 'SWS', angle: 247.5 },
-    SW: { dir: 'SW', angle: 225 },
-    SWW: { dir: 'SWW', angle: 202.5 },
-    W: { dir: 'W', angle: 180 },
-    NWW: { dir: 'NWW', angle: 157.5 },
-    NW: { dir: 'NW', angle: 135 },
-    NWN: { dir: 'NWN', angle: 112.5 },
+    N: 90,
+    NEN: 67.5,
+    NE: 45,
+    NEE: 22.5,
+    E: 0,
+    SEE: 337.5,
+    SE: 315,
+    SES: 292.5,
+    S: 270,
+    SWS: 247.5,
+    SW: 225,
+    SWW: 202.5,
+    W: 180,
+    NWW: 157.5,
+    NW: 135,
+    NWN: 112.5,
 } as const;
 
+const WindDirkeys = ['N', 'NEN', 'NE', 'NEE', 'E', 'SEE', 'SE', 'SES', 'S', 'SWS',
+    'SW', 'SWW', 'W', 'NWW', 'NW', 'NWN'] as const;
 
+type WindDirection = typeof WindDirkeys[number];
 
-type WindDirection = typeof WindDirObj[keyof typeof WindDirObj];
-
-
-export type { ICurrentData, ICoords, IDataContext, ISetData, TempUnit, IForecastData }
+export type { ICurrentData, ICoords, IDataContext, ISetData, TempUnit, IForecastData, WindDirection }
+export { WindDirObj }

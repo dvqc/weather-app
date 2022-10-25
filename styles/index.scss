@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap');
-@import './globals.scss';
 
 body {
   padding: 0;
@@ -19,6 +18,8 @@ a {
 :root{
   font-size: 15px;
 }
+
+@import './globals.scss';
 
 main {
   display: flex;

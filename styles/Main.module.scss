@@ -1,6 +1,6 @@
 @import './globals.scss';
 
-.main-container{
+.main-container {
     display: flex;
     flex-direction: column;
     margin: 2rem 12% 2rem;
@@ -8,11 +8,14 @@
 }
 
 .temp-switch {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@mixin temp-typo {
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.35rem;
-    display: flex;
-    justify-content: flex-end;
 }
 
 .temp-unit {
@@ -22,6 +25,7 @@
     margin: 0 .5rem;
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     display: block;
+    @include temp-typo()
 }
 
 .temp-unit-select {
@@ -31,5 +35,5 @@
     margin: 0 .5rem;
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     display: block;
+    @include temp-typo()
 }
-

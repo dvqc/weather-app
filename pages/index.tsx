@@ -8,11 +8,12 @@ import MainContainer from '../components/MainContainer';
 import ProgressBar from '../components/ProgressBar';
 import SideBar from '../components/SideBar'
 import TempSwitch from '../components/TempSwitch';
+import WindIndicator from '../components/WindIndicator';
 import DataContext from '../contexts/DataContext'
 import TempContext from '../contexts/TempContext';
 import useFetchCoords from '../hooks/useFetchCoords';
 import useFetchForecast from '../hooks/useFetchForecast';
-import { ICurrentData, ICoords, TempUnit, IForecastData } from '../interfaces';
+import { ICurrentData, ICoords, TempUnit, IForecastData, WindDirection } from '../interfaces';
 import { DEFAULTDATA, setNewCoords } from '../utils';
 
 const Home: NextPage = () => {
@@ -36,7 +37,9 @@ const Home: NextPage = () => {
                 forecastDay={{ ...entry }}></ForecastCard>) : <></>}
             </ForecastContainer>
             <HighlightsContainer>
-              <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}></HighlightsCard>
+              <HighlightsCard title={'Wind Status'} measurement={data.wind} unit={'mph'}>
+                <WindIndicator direction={data.wind_dir as WindDirection}></WindIndicator>
+              </HighlightsCard>
               <HighlightsCard title={'Humidity'} measurement={data.humidity} unit={'%'}>
                 <ProgressBar percentage={data.humidity}></ProgressBar>
               </HighlightsCard>
