@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap');
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Raleway', Helvetica Neue, sans-serif;
+:root {
+  font-size: 15px;
 }
 
 a {
@@ -15,13 +13,25 @@ a {
   box-sizing: border-box;
 }
 
-:root{
-  font-size: 15px;
-}
-
 @import './globals.scss';
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', Helvetica Neue, sans-serif;
+  background-color: $background-dark;
+}
 
 main {
   display: flex;
-  background-color: $background-dark;
+}
+
+@media (max-width: 840px) {
+  :root{
+    font-size: 12px;
+  }
+  
+  main {
+    flex-direction: column;
+  }
 }

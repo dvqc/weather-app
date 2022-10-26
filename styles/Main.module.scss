@@ -10,6 +10,7 @@
 .temp-switch {
     display: flex;
     justify-content: flex-end;
+    margin: 1rem 0;
 }
 
 @mixin temp-typo {
@@ -36,4 +37,13 @@
     transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     display: block;
     @include temp-typo()
+}
+
+@media (max-width: 840px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem 10% 2rem;
+        justify-content: space-between;
+    }
 }

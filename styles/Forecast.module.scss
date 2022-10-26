@@ -50,3 +50,10 @@
     margin: 0;
     padding: 0;
 }
+
+@media (max-width: 840px) {
+    .forecast-container {
+        justify-content: flex-start;
+        margin: 2rem 0;
+    }
+}

@@ -5,19 +5,20 @@
     margin: 0;
 }
 
-.highlights-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 5vh;
-    background-color: $background-dark;
-}
 
 .highlights-title {
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.9rem;
     color: $text-light;
+}
+
+.highlights-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 5vh;
+    background-color: $background-dark;
 }
 
 .highlights-card {
@@ -103,5 +104,12 @@
     background-size: 70%;
     background-position: center;
     transform: rotateZ(90deg);
-    transition: transform 350ms ease;
+    transition: transform 400ms ease;
+}
+
+
+@media (max-width: 840px) {
+    .highlights-card-container {
+        justify-content: center;
+    }
 }
