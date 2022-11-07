@@ -26,8 +26,6 @@
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
-
 
 ### Built With
 
@@ -41,7 +39,20 @@
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
+ - User story: I can see city weather as default, preferably my current location
+ - User story: I can search for city
+ - User story: I can see weather of today and the next 5 days
+ - User story: I can see the date and location of the weather
+ - User story: I can see according to image for each type of weather
+ - User story: I can see the min and max degree each day
+ - User story: I can see wind status and wind direction
+ - User story: I can see humidity percentage
+ - User story: I can see a visibility indicator
+ - User story: I can see the air pressure number
+ - User story(optional): I can request my current location weather
+ - User story(optional): I can convert temperature in Celcius to Fahrenheit and vice versa.
 
+Furthermore, the application was built with responsive design in mind, so it is accessible from a large range of devices.
 ## How To Use
 
 <!-- Example: -->
@@ -59,16 +70,7 @@ $ npm install
 $ npm run start
 ```
 
-## Acknowledgements
-
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
-
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-
 ## Contact
 
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- Website [b-ibrahim](https://b-ibrahim.vercel.app/)
+- GitHub [@dvqc](https://{github.com/dvqc})
