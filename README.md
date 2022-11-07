@@ -73,4 +73,4 @@ $ npm run start
 ## Contact
 
 - Website [b-ibrahim](https://b-ibrahim.vercel.app/)
-- GitHub [@dvqc](https://{github.com/dvqc})
+- GitHub [@dvqc](https://github.com/dvqc)
