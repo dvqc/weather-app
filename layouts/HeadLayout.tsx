@@ -4,7 +4,7 @@ const HeadLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Head>
-        <title>My Unsplash</title>
+        <title>My Weather App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {children}

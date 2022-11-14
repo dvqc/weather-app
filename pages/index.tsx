@@ -8,8 +8,9 @@ import { HighlightsContainer, HighlightsCard } from 'components/highlights';
 import SideBar from 'components/sidebar/SideBar';
 import { DataContext, TempContext } from 'contexts';
 import { useFetchCoords, useFetchForecast } from 'hooks';
-import { ICurrentData, ICoords, TempUnit, IForecastData, WindDirection } from 'interfaces';
+import { ICurrentData, ICoords, TempUnit, IForecastData, WindDirection, TempUnitArr } from 'interfaces';
 import { DEFAULTDATA, setNewCoords } from 'utils';
+import { HeadLayout } from 'layouts';
 
 const Home: NextPage = () => {
   const [coords, setCoords] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 
@@ -21,12 +22,13 @@ const Home: NextPage = () => {
   useFetchForecast(data.city, setForecastData)
 
   return (
+    <HeadLayout>
     <DataContext.Provider value={{ data, setData }}>
       <TempContext.Provider value={tempUnit}>
         <main>
           <SideBar coords={coords} setCoords={setCoords}></SideBar>
           <MainContainer>
-            <TempSwitch units={['C', 'F']} selectUnit={setTempUnit} ></TempSwitch>
+            <TempSwitch units={TempUnitArr.slice()} selectUnit={setTempUnit} ></TempSwitch>
             <ForecastContainer>
               {forecastData ? forecastData.map((entry, key) => <ForecastCard key={key}
                 forecastDay={{ ...entry }}></ForecastCard>) : <></>}
@@ -45,6 +47,7 @@ const Home: NextPage = () => {
         </main>
       </TempContext.Provider>
     </DataContext.Provider>
+    </HeadLayout>
   )
 }
 

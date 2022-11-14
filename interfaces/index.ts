@@ -39,7 +39,8 @@ interface ICoords {
     lon: number
 }
 
-type TempUnit = "C" | "F";
+const TempUnitArr = ["C", "F"] as const;
+type TempUnit = typeof TempUnitArr[number];
 
 const WindDirObj = {
     N: 90,
@@ -66,4 +67,4 @@ const WindDirkeys = ['N', 'NEN', 'NE', 'NEE', 'E', 'SEE', 'SE', 'SES', 'S', 'SWS
 type WindDirection = typeof WindDirkeys[number];
 
 export type { ICurrentData, ICoords, IDataContext, ISetData, TempUnit, IForecastData, WindDirection }
-export { WindDirObj }
+export { WindDirObj, TempUnitArr }
