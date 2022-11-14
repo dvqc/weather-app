@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "styles/Highlights.module.scss"
-import HighlightsCard from "./HighlightsCard";
 
 const HighlightsContainer = ({children}: {children: React.ReactNode}) => {
     return (

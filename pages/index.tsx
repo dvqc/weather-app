@@ -1,20 +1,15 @@
-import type { NextPage } from 'next'
 import { useState } from 'react';
-import ForecastContainer from '../components/ForcastContainer';
-import ForecastCard from '../components/ForecastCard';
-import HighlightsCard from '../components/HighlightsCard';
-import HighlightsContainer from '../components/HighlightsContainer';
-import MainContainer from '../components/MainContainer';
-import ProgressBar from '../components/ProgressBar';
-import SideBar from '../components/SideBar'
-import TempSwitch from '../components/TempSwitch';
-import WindIndicator from '../components/WindIndicator';
-import DataContext from '../contexts/DataContext'
-import TempContext from '../contexts/TempContext';
-import useFetchCoords from '../hooks/useFetchCoords';
-import useFetchForecast from '../hooks/useFetchForecast';
-import { ICurrentData, ICoords, TempUnit, IForecastData, WindDirection } from '../interfaces';
-import { DEFAULTDATA, setNewCoords } from '../utils';
+import type { NextPage } from 'next'
+
+import { MainContainer, TempSwitch, WindIndicator, ProgressBar } from 'components';
+import { ForecastCard } from 'components/forecast';
+import ForecastContainer from 'components/forecast/ForcastContainer';
+import { HighlightsContainer, HighlightsCard } from 'components/highlights';
+import SideBar from 'components/sidebar/SideBar';
+import { DataContext, TempContext } from 'contexts';
+import { useFetchCoords, useFetchForecast } from 'hooks';
+import { ICurrentData, ICoords, TempUnit, IForecastData, WindDirection } from 'interfaces';
+import { DEFAULTDATA, setNewCoords } from 'utils';
 
 const Home: NextPage = () => {
   const [coords, setCoords] = useState<ICoords>({ lat: 48.8566, lon: 2.3522 });// default to paris 

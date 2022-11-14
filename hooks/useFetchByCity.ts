@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { ICurrentData } from "../interfaces";
+import { ICurrentData } from "interfaces";
 
 const useFetchByCity= (city: string, setData: Dispatch<SetStateAction<ICurrentData>> | undefined) => {
     useEffect(() => {

@@ -1,7 +1,7 @@
+import DataContext from "contexts/DataContext";
 import { useContext, useState } from "react"
 import styles from "styles/SideBar.module.scss"
-import DataContext from "../contexts/DataContext"
-import useFetchByCity from "../hooks/useFetchByCity"
+import { useFetchByCity } from "hooks"
 
 
 const CitiesList = ({ cities, setIsSearching }: { cities: [string], setIsSearching: React.Dispatch<React.SetStateAction<boolean>> }) => {

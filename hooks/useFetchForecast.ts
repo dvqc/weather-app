@@ -1,6 +1,6 @@
 
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { IForecastData } from "../interfaces";
+import { IForecastData } from "interfaces";
 
 const useFetchForecast = (city: string, setForecastData: Dispatch<SetStateAction<[IForecastData] | undefined>>) => {
     useEffect(() => {

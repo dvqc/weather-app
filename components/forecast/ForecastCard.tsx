@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from "react";
 import styles from "styles/Forecast.module.scss"
-import TempContext from "../contexts/TempContext";
-import { IForecastData } from "../interfaces";
-import { checkIfTomorrow, formatDate, translateCondition } from "../utils";
+import TempContext from "contexts/TempContext";
+import { IForecastData } from "interfaces";
+import { checkIfTomorrow, formatDate, translateCondition } from "utils";
 
 const ForecastCard = ({ forecastDay }:
     {

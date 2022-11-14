@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TempUnit } from "../interfaces";
+import { TempUnit } from "interfaces";
 import styles from "styles/Main.module.scss"
 
 const TempSwitch = ({ units, selectUnit }: {

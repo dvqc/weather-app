@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect} from "react";
-import { ICoords, ICurrentData } from "../interfaces";
+import { ICoords, ICurrentData } from "interfaces";
 
 const useFetchCoords = (coord: ICoords | undefined, setData: Dispatch<SetStateAction<ICurrentData>>) => {
     useEffect(()=> {   
