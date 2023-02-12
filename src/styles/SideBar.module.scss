@@ -1,0 +1,218 @@
+@import "globals.scss";
+
+.sidebar {
+    min-width: min(30.6rem, 100vw);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $background-light;
+    justify-content: space-between;
+}
+
+.sidebar.focused {
+    justify-content: flex-start;
+}
+
+.topbar {
+    margin: 2.8rem 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@mixin topbar-mixin {
+    height: 2.65rem;
+    line-height: 2.65rem;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    background-color: $background-grey;
+    color: $text-light;
+    box-shadow: $box-shadow;
+}
+
+.searchbar {
+    @include topbar-mixin();
+    width: 11.3rem;
+    vertical-align: middle;
+    outline: none;
+    border: 0;
+    padding-left: 1.5rem;
+}
+
+.searchbar.focused {
+    width: 17.85rem;
+    padding: 0 0 0 3rem;
+    background-color: $background-light;
+    background: url("/images/search.svg") left no-repeat scroll;
+    background-position: 1rem;
+    background-size: 1.5rem;
+    border: 1px solid $text-light;
+    box-shadow: none;
+}
+
+.searchbar.focused::placeholder {
+    color: $text-grey-search;
+}
+
+.search-button {
+    @include topbar-mixin();
+    background-color: #3C47E9;
+    color: $text-light;
+    box-shadow: none;
+    padding: 0 1.2rem;
+    border: 0;
+    cursor: pointer;
+}
+
+.search-button:active {
+    background-color: #3C67E9;
+}
+
+.searchbar::placeholder {
+    color: $text-light;
+}
+
+.location-button {
+    background-image: url("/images/gps.svg");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    @include topbar-mixin();
+    @include round-button();
+}
+
+.location-button:active {
+    border: 2px solid $background-light;
+}
+
+
+.current-weather-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+}
+
+.current-weather-img::before {
+    background-image: url("/images/Cloud-background.png");
+    background-size: 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    z-index: -1;
+}
+
+.current-weather-temp {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: $text-light;
+    font-weight: 500;
+    font-size: 6.65rem;
+}
+
+.current-weather-temp span {
+    color: $text-grey;
+    font-weight: 500;
+    font-size: 3.3rem;
+}
+
+.current-weather-type {
+    font-weight: 600;
+    font-size: 1.6rem;
+    text-align: center;
+    color: $text-grey;
+    margin: 3.3rem 0;
+}
+
+.current-date {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    color: $text-dark-grey;
+}
+
+.current-date span {
+    margin: 0 10px;
+}
+
+.current-location {
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    color: $text-dark-grey;
+    margin: 1.3rem 0;
+    line-height: 1.3rem;
+}
+
+.current-location span {
+    background-image: url("/images/location.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.cancel-search {
+    align-self: flex-end;
+    padding: .5rem;
+}
+
+.cancel-search button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    background-image: url("/images/close.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.cities-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 3rem;
+}
+
+.city-item {
+    color: $text-light;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.8rem;
+    margin-bottom: 1rem;
+    background: none;
+    background-image: url("/images/next.svg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 0rem;
+}
+
+.city-item:hover {
+    background-size: 1.5rem;
+    border: 1px solid $text-grey-search;
+    cursor: pointer;
+    transition: all 300ms ease-in;
+}
